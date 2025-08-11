@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { FaWhatsapp } from 'react-icons/fa';
 import { 
   ArrowUp, 
@@ -9,6 +10,7 @@ import {
 } from 'lucide-react';
 
 const Footer = () => {
+  const { t } = useLanguage();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -44,10 +46,10 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Seasons', id: 'seasons' },
-    { name: 'Activities', id: 'activities' },
-    { name: 'Accommodation', id: 'accommodation' },
-    { name: 'Location', id: 'location' }
+    { name: t('nav.seasons'), id: 'seasons' },
+    { name: t('nav.activities'), id: 'activities' },
+    { name: t('nav.accommodation'), id: 'accommodation' },
+    { name: t('nav.location'), id: 'location' }
   ];
 
   return (
@@ -79,26 +81,26 @@ const Footer = () => {
           <div className="space-y-6">
             <div>
               <h3 className="text-3xl font-bold gradient-text mb-4">
-                Søreng Gård
+                {t('footer.title')}
               </h3>
               <p className="text-background/80 leading-relaxed">
-                Where nature embraces you. Creating unforgettable adventures and meaningful connections in Norway’s serene landscapes
+                {t('footer.description')}
               </p>
             </div>
 
             <div className="flex items-center gap-2 text-background/70">
               <MapPin className="w-4 h-4" />
-              <span className="text-sm">Søreng Gård, Norway</span>
+              <span className="text-sm">{t('contact.location')}</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-background">Quick Links</h4>
+            <h4 className="text-xl font-semibold mb-6 text-background">{t('footer.quickLinks')}</h4>
             <nav className="space-y-3">
               {quickLinks.map((link) => (
                 <button
-                  key={link.name}
+                  key={link.id}
                   onClick={() => scrollToSection(link.id)}
                   className="block text-background/80 hover:text-background transition-colors duration-300 hover:translate-x-2"
                 >
@@ -110,7 +112,7 @@ const Footer = () => {
 
           {/* Social & Contact */}
           <div>
-            <h4 className="text-xl font-semibold mb-6 text-background">Connect With Us</h4>
+            <h4 className="text-xl font-semibold mb-6 text-background">{t('footer.connect')}</h4>
             
             <div className="flex gap-4 mb-6">
               {socialLinks.map((social) => (
@@ -126,8 +128,8 @@ const Footer = () => {
             </div>
 
             <div className="space-y-2 text-background/80 text-sm">
-              <p>thomas.soreng.m@gmail.com</p>
-              <p>+47 973 47  639</p>
+              <p>{t('contact.email')}</p>
+              <p>{t('contact.phone')}</p>
             </div>
           </div>
         </div>
@@ -136,13 +138,13 @@ const Footer = () => {
         <div className="border-t border-background/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2 text-background/60 text-sm">
-              <span>Made with</span>
+              <span>{t('footer.madeWith')}</span>
               <Heart className="w-4 h-4 text-accent animate-glow" />
-              <span>for nature-loving children</span>
+              <span>{t('footer.for')}</span>
             </div>
 
             <div className="text-background/60 text-sm">
-              © 2024 Søreng Gård. All rights reserved.
+              {t('footer.copyright')}
             </div>
           </div>
         </div>

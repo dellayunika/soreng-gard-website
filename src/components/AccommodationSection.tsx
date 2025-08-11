@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { 
   Home,
   Users,
@@ -12,21 +13,22 @@ import {
 } from 'lucide-react';
 
 const AccommodationSection = () => {
+  const { t } = useLanguage();
   const [activeView, setActiveView] = useState<'exterior' | 'floorplan'>('exterior');
   const [hoveredFacility, setHoveredFacility] = useState<string | null>(null);
 
   const facilities = [
-    { id: 'kitchen', name: 'Full Kitchen', icon: ChefHat, description: 'Modern cooking facilities' },
-    { id: 'bathrooms', name: 'Bathrooms', icon: Bath, description: 'Clean, private facilities' },
-    { id: 'bedrooms', name: 'Cozy Bedrooms', icon: Bed, description: 'Comfortable sleeping quarters' },
-    { id: 'common', name: 'Common Areas', icon: Users, description: 'Spaces for gathering' }
+    { id: 'kitchen', name: t('accommodation.fullKitchen'), icon: ChefHat, description: t('accommodation.modernAppliances') },
+    { id: 'bathrooms', name: t('accommodation.bathrooms'), icon: Bath, description: t('accommodation.features').split(',')[1] || 'Clean, private facilities' },
+    { id: 'bedrooms', name: t('accommodation.cozyBedrooms'), icon: Bed, description: t('accommodation.features').split(',')[0] || 'Comfortable sleeping quarters' },
+    { id: 'common', name: t('accommodation.commonAreas'), icon: Users, description: t('accommodation.spacesForGathering') }
   ];
 
   const bbqFeatures = [
-    { name: 'Outdoor Grill', icon: Flame },
-    { name: 'Picnic Tables', icon: UtensilsCrossed },
-    { name: 'Fire Pit', icon: Flame },
-    { name: 'Seating Area', icon: Users }
+    { name: t('accommodation.outdoorGrill'), icon: Flame },
+    { name: t('accommodation.picnicTables'), icon: UtensilsCrossed },
+    { name: t('accommodation.firePit'), icon: Flame },
+    { name: t('accommodation.seatingArea'), icon: Users }
   ];
 
   return (
@@ -44,10 +46,10 @@ const AccommodationSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold gradient-text mb-4 text-outline">
-            Your Home Away From Home
+            {t('accommodation.yourHome')}
           </h2>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-            Comfortable accommodation designed for memorable stays in nature
+            {t('accommodation.description')}
           </p>
         </div>
 
@@ -60,14 +62,14 @@ const AccommodationSection = () => {
                 onClick={() => setActiveView('exterior')}
               >
                 <Home className="w-4 h-4 mr-2" />
-                Exterior View
+                {t('accommodation.exteriorView')}
               </Button>
               <Button
                 variant={activeView === 'floorplan' ? 'seasonal' : 'glass'}
                 onClick={() => setActiveView('floorplan')}
               >
                 <MapPin className="w-4 h-4 mr-2" />
-                Floor Plan
+                {t('accommodation.floorPlan')}
               </Button>
             </div>
 

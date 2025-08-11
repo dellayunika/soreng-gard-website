@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { 
   Sun, 
   Leaf, 
@@ -15,56 +16,77 @@ import autumnImage from '@/assets/autumn-camp.jpg';
 import winterImage from '@/assets/winter-lodge.jpg';
 import springImage from '@/assets/spring-meadow.jpg';
 
-const seasons = [
-  {
-    id: 'summer',
-    name: 'Summer',
-    tagline: 'Adventure & Discovery',
-    description: 'Kayaking through crystal waters, hiking mountain trails, and outdoor games under the endless Nordic sun.',
-    image: summerImage,
-    bgClass: 'bg-gradient-summer',
-    icon: Sun,
-    activities: ['Kayaking', 'Hiking', 'Outdoor Games', 'Swimming'],
-    activityIcons: [Waves, Mountain, Sun, Waves]
-  },
-  {
-    id: 'autumn',
-    name: 'Autumn',
-    tagline: 'Warmth & Reflection',
-    description: 'Gathering around crackling campfires, forest exploration, and cozy evenings filled with stories.',
-    image: autumnImage,
-    bgClass: 'bg-gradient-autumn',
-    icon: Leaf,
-    activities: ['Campfire Stories', 'Forest Walks', 'Craft Making', 'Stargazing'],
-    activityIcons: [Flame, Trees, Leaf, Sun]
-  },
-  {
-    id: 'winter',
-    name: 'Winter',
-    tagline: 'Magic & Wonder',
-    description: 'Snow adventures, cozy cabin life, and the enchanting beauty of Norwegian winter landscapes.',
-    image: winterImage,
-    bgClass: 'bg-gradient-winter',
-    icon: Snowflake,
-    activities: ['Snow Play', 'Cabin Life', 'Winter Crafts', 'Aurora Watching'],
-    activityIcons: [Snowflake, Mountain, Trees, Sun]
-  },
-  {
-    id: 'spring',
-    name: 'Spring',
-    tagline: 'Growth & Renewal',
-    description: 'Nature awakening, flower gathering, and celebrating new beginnings in blooming meadows.',
-    image: springImage,
-    bgClass: 'bg-gradient-spring',
-    icon: Flower,
-    activities: ['Nature Walks', 'Gardening', 'Flower Picking', 'Bird Watching'],
-    activityIcons: [Flower, Trees, Leaf, Sun]
-  }
-];
-
 const SeasonSection = () => {
+  const { t } = useLanguage();
   const [activeSeason, setActiveSeason] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  const seasons = [
+    {
+      id: 'summer',
+      name: t('seasons.summer.name'),
+      tagline: t('seasons.summer.tagline'),
+      description: t('seasons.summer.description'),
+      image: summerImage,
+      bgClass: 'bg-gradient-summer',
+      icon: Sun,
+      activities: [
+        t('seasons.summer.activities').split(',')[0] || 'Kayaking',
+        t('seasons.summer.activities').split(',')[1] || 'Hiking',
+        t('seasons.summer.activities').split(',')[2] || 'Outdoor Games',
+        t('seasons.summer.activities').split(',')[3] || 'Swimming'
+      ],
+      activityIcons: [Waves, Mountain, Sun, Waves]
+    },
+    {
+      id: 'autumn',
+      name: t('seasons.autumn.name'),
+      tagline: t('seasons.autumn.tagline'),
+      description: t('seasons.autumn.description'),
+      image: autumnImage,
+      bgClass: 'bg-gradient-autumn',
+      icon: Leaf,
+      activities: [
+        t('seasons.autumn.activities').split(',')[0] || 'Campfire Stories',
+        t('seasons.autumn.activities').split(',')[1] || 'Forest Walks',
+        t('seasons.autumn.activities').split(',')[2] || 'Craft Making',
+        t('seasons.autumn.activities').split(',')[3] || 'Stargazing'
+      ],
+      activityIcons: [Flame, Trees, Leaf, Sun]
+    },
+    {
+      id: 'winter',
+      name: t('seasons.winter.name'),
+      tagline: t('seasons.winter.tagline'),
+      description: t('seasons.winter.description'),
+      image: winterImage,
+      bgClass: 'bg-gradient-winter',
+      icon: Snowflake,
+      activities: [
+        t('seasons.winter.activities').split(',')[0] || 'Snow Play',
+        t('seasons.winter.activities').split(',')[1] || 'Cabin Life',
+        t('seasons.winter.activities').split(',')[2] || 'Winter Crafts',
+        t('seasons.winter.activities').split(',')[3] || 'Aurora Watching'
+      ],
+      activityIcons: [Snowflake, Mountain, Trees, Sun]
+    },
+    {
+      id: 'spring',
+      name: t('seasons.spring.name'),
+      tagline: t('seasons.spring.tagline'),
+      description: t('seasons.spring.description'),
+      image: springImage,
+      bgClass: 'bg-gradient-spring',
+      icon: Flower,
+      activities: [
+        t('seasons.spring.activities').split(',')[0] || 'Nature Walks',
+        t('seasons.spring.activities').split(',')[1] || 'Gardening',
+        t('seasons.spring.activities').split(',')[2] || 'Flower Picking',
+        t('seasons.spring.activities').split(',')[3] || 'Bird Watching'
+      ],
+      activityIcons: [Flower, Trees, Leaf, Sun]
+    }
+  ];
 
   const handleSeasonChange = (index: number) => {
     if (index === activeSeason || isAnimating) return;
@@ -88,10 +110,10 @@ const SeasonSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold gradient-text mb-4 text-outline">
-            Seasonal Adventures
+            {t('section.seasons')}
           </h2>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-            Experience the magic of Norwegian nature through every season
+            {t('section.seasons')}
           </p>
         </div>
 

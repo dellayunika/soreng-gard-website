@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Play, Filter } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 import summer from '@/assets/summer.jpg';
 import summer2 from '@/assets/summer2.jpg';
 import summer3 from '@/assets/summer3.jpg';
@@ -12,94 +13,102 @@ import winter2 from '@/assets/winter2.jpg';
 import winter3 from '@/assets/winter3.jpg';
 import autumnCamp from '@/assets/autumn-camp.jpg';
 
-const activities = [
-  {
-    id: 1,
-    title: 'Cliffside Ocean View',
-    season: 'summer',
-    image: summer,
-    type: 'image',
-    description: 'A scenic cliffside overlooking the ocean in Sorenggard.'
-  },
-  {
-    id: 2,
-    title: 'Another Cliffside View',
-    season: 'summer',
-    image: summer2,
-    type: 'image',
-    description: 'Another beautiful view of the ocean from the cliffs.'
-  },
-  {
-    id: 3,
-    title: 'Swim Day with Owner',
-    season: 'summer',
-    image: summer3,
-    type: 'image',
-    description: 'A day of swimming with the service owner and their child.'
-  },
-  {
-    id: 4,
-    title: 'Outdoor Pool',
-    season: 'summer',
-    image: summer4,
-    type: 'image',
-    description: 'A natural outdoor swimming pool in the resort area.'
-  },
-  {
-    id: 5,
-    title: 'Spring Meadow',
-    season: 'spring',
-    image: springMeadow,
-    type: 'image',
-    description: 'A blooming hillside meadow during the spring season.'
-  },
-  {
-    id: 6,
-    title: 'Spring Hillside',
-    season: 'spring',
-    image: spring2,
-    type: 'image',
-    description: 'A vibrant hillside view in the spring.'
-  },
-  {
-    id: 7,
-    title: 'Winter Lodge',
-    season: 'winter',
-    image: winterLodge,
-    type: 'image',
-    description: 'A cozy lodge surrounded by snowy hills during winter.'
-  },
-  {
-    id: 8,
-    title: 'Winter Village View',
-    season: 'winter',
-    image: winter2,
-    type: 'image',
-    description: 'A picturesque winter scene in the village area.'
-  },
-  {
-    id: 9,
-    title: 'Snow Melts in Spring',
-    season: 'winter',
-    image: winter3,
-    type: 'image',
-    description: 'Melting snow signaling the end of winter.'
-  },
-  {
-    id: 10,
-    title: 'Falling Maple Leaves',
-    season: 'autumn',
-    image: autumnCamp,
-    type: 'image',
-    description: 'Maple leaves falling gently in the autumn breeze.'
-  }
-];
-
-const seasons = ['all', 'summer', 'autumn', 'winter', 'spring'];
-
 const ActivityGallery = () => {
+  const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedSeason, setSelectedSeason] = useState('all');
+
+  const activities = [
+    {
+      id: 1,
+      title: t('activities.cliffside.title'),
+      season: 'summer',
+      image: summer,
+      type: 'image',
+      description: t('activities.cliffside.description')
+    },
+    {
+      id: 2,
+      title: t('activities.cliffside2.title'),
+      season: 'summer',
+      image: summer2,
+      type: 'image',
+      description: t('activities.cliffside2.description')
+    },
+    {
+      id: 3,
+      title: t('activities.swimday.title'),
+      season: 'summer',
+      image: summer3,
+      type: 'image',
+      description: t('activities.swimday.description')
+    },
+    {
+      id: 4,
+      title: t('activities.outdoorpool.title'),
+      season: 'summer',
+      image: summer4,
+      type: 'image',
+      description: t('activities.outdoorpool.description')
+    },
+    {
+      id: 5,
+      title: t('activities.springmeadow.title'),
+      season: 'spring',
+      image: springMeadow,
+      type: 'image',
+      description: t('activities.springmeadow.description')
+    },
+    {
+      id: 6,
+      title: t('activities.springhillside.title'),
+      season: 'spring',
+      image: spring2,
+      type: 'image',
+      description: t('activities.springhillside.description')
+    },
+    {
+      id: 7,
+      title: t('activities.winterlodge.title'),
+      season: 'winter',
+      image: winterLodge,
+      type: 'image',
+      description: t('activities.winterlodge.description')
+    },
+    {
+      id: 8,
+      title: t('activities.wintervillage.title'),
+      season: 'winter',
+      image: winter2,
+      type: 'image',
+      description: t('activities.wintervillage.description')
+    },
+    {
+      id: 9,
+      title: t('activities.snowmelts.title'),
+      season: 'winter',
+      image: winter3,
+      type: 'image',
+      description: t('activities.snowmelts.description')
+    },
+    {
+      id: 10,
+      title: t('activities.mapleleaves.title'),
+      season: 'autumn',
+      image: autumnCamp,
+      type: 'image',
+      description: t('activities.mapleleaves.description')
+    }
+  ];
+
+  const seasons = ['all', 'summer', 'autumn', 'winter', 'spring'];
+  const seasonNames = {
+    all: t('nav.seasons'),
+    summer: t('seasons.summer.name'),
+    autumn: t('seasons.autumn.name'),
+    winter: t('seasons.winter.name'),
+    spring: t('seasons.spring.name')
+  };
 
   const filteredActivities = selectedSeason === 'all'
     ? activities
@@ -122,14 +131,14 @@ const ActivityGallery = () => {
   }, [filteredActivities]);
 
   return (
-    <section className="py-20 bg-muted/30 relative overflow-hidden">
+    <section id="activities" className="py-20 bg-muted/30 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold gradient-text mb-4 text-outline">
-            Activity Gallery
+            {t('activities.title')}
           </h2>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto mb-8">
-            Discover the adventures that await throughout the year
+            {t('activities.subtitle')}
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">
@@ -145,7 +154,7 @@ const ActivityGallery = () => {
                 className="capitalize"
               >
                 <Filter className="w-4 h-4 mr-2" />
-                {season === 'all' ? 'All Seasons' : season}
+                {seasonNames[season as keyof typeof seasonNames]}
               </Button>
             ))}
           </div>
@@ -203,7 +212,7 @@ const ActivityGallery = () => {
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/80 to-transparent">
                     <span className="text-sm font-semibold capitalize">
-                      {activity.season}
+                      {seasonNames[activity.season as keyof typeof seasonNames]}
                     </span>
                     <h3 className="text-lg font-bold">{activity.title}</h3>
                     <p className="text-sm text-muted-foreground">{activity.description}</p>

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import heroImage from '@/assets/hero-lake.jpg';
 
 const HeroSection = () => {
-  const fullText = "Where Adventure Begins";
+  const { language, t } = useLanguage();
+  const fullText = t('hero.tagline');
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
@@ -16,10 +18,10 @@ const HeroSection = () => {
       } else {
         clearInterval(interval);
       }
-    }, 100); // kecepatan ketik
+    }, 100);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [fullText]);
 
   const scrollToSeasons = () => {
     document.getElementById('seasons')?.scrollIntoView({ behavior: 'smooth' });
@@ -49,7 +51,7 @@ const HeroSection = () => {
         {/* Logo */}
         <div className="mb-8 animate-slide-in-up">
           <h1 className="text-6xl md:text-8xl font-bold gradient-text mb-4 text-outline">
-            SØRENG GÅRD
+            {t('hero.title')}
           </h1>
           <div className="w-24 h-2 bg-gradient-hero mx-auto rounded-full"></div>
         </div>
@@ -70,7 +72,7 @@ const HeroSection = () => {
             onClick={scrollToSeasons}
             className="group"
           >
-            Explore the Seasons
+            {t('hero.cta')}
             <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
           </Button>
         </div>
