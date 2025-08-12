@@ -42,7 +42,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: FaWhatsapp, href: 'https://wa.me/4797347639', label: 'WhatsApp' },
-    { icon: Mail, href: 'mailto:hello@soreng-gard.no', label: 'Email' }
+    { icon: Mail, href: 'mailto:thomas.soreng.m@gmail.com', label: 'Email' }
   ];
 
   const quickLinks = [
@@ -137,12 +137,6 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-background/60 text-sm">
-              <span>{t('footer.madeWith')}</span>
-              <Heart className="w-4 h-4 text-accent animate-glow" />
-              <span>{t('footer.for')}</span>
-            </div>
-
             <div className="text-background/60 text-sm">
               {t('footer.copyright')}
             </div>

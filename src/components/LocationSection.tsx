@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { 
   MapPin, 
   Phone, 
@@ -12,30 +13,30 @@ import {
 } from 'lucide-react';
 
 const LocationSection = () => {
+  const { t } = useLanguage();
   const [showContact, setShowContact] = useState(false);
   const [currentWeather] = useState({
     condition: 'sunny',
-    temperature: '18°C',
-    description: 'Perfect for outdoor activities'
+    temperature: '18°C'
   });
 
   const contactInfo = [
     {
       icon: MapPin,
-      label: 'Address',
-      value: 'Søreng Gård, Norway',
+      label: t('location.address'),
+      value: t('contact.location'),
       action: () => window.open('https://goo.gl/maps/mFMcc8ik4rXJGWez8', '_blank')
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+47 973 47 639',  
+      label: t('location.phone'),
+      value: t('contact.phone'),  
       action: () => window.open('tel:+4797347639')
     },
     {
       icon: Mail,
-      label: 'Email',
-      value: 'thomas.soreng.m@gmail.com',
+      label: t('location.email'),
+      value: t('contact.email'),
       action: () => window.open('mailto:thomas.soreng.m@gmail.com')
     }
   ];
@@ -53,6 +54,7 @@ const LocationSection = () => {
   const WeatherIcon = getWeatherIcon();
 
   return (
+    
     <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/10 relative overflow-hidden">
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-24 h-24 glass rounded-full animate-float opacity-20" />
@@ -61,10 +63,10 @@ const LocationSection = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-bold gradient-text mb-4 text-outline">
-            Find Us in Nature
+            {t('location.findUs')}
           </h2>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-            Nestled in the peaceful hills of Søreng, where wild beauty meets easy access
+            {t('location.description')}
           </p>
         </div>
 
@@ -90,7 +92,7 @@ const LocationSection = () => {
                   <div className="absolute top-4 left-4 glass rounded-xl p-3">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-primary animate-bounce-gentle" />
-                      <span className="text-sm font-medium">Søreng Gård</span>
+                      <span className="text-sm font-medium">{t('location.address.label')}</span>
                     </div>
                   </div>
                 </div>
@@ -101,20 +103,20 @@ const LocationSection = () => {
             <div className="glass-strong rounded-2xl p-6">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <Navigation className="w-5 h-5 text-primary" />
-                How to Get Here
+                {t('location.howToGetHere')}
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                  <span>By car: Drive 2.5 hours north from Oslo via E6, exit to Øyer/Søreng</span>
+                  <span>{t('location.byCar')}</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                  <span>By train: Train to Lillehammer, then local bus or taxi (30 min)</span>
+                  <span>{t('location.byTrain')}</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2" />
-                  <span>By air: Fly to Oslo Airport, then 2.5-hour drive north to Søreng</span>
+                  <span>{t('location.byAir')}</span>
                 </div>
               </div>
               
@@ -124,7 +126,7 @@ const LocationSection = () => {
                 className="mt-4"
                 onClick={() => window.open('https://goo.gl/maps/mFMcc8ik4rXJGWez8', '_blank')}
               >
-                Open in Maps
+                {t('location.openInMaps')}
                 <Navigation className="w-4 h-4 ml-2" />
               </Button>
             </div>
@@ -138,25 +140,25 @@ const LocationSection = () => {
                 <div className="w-20 h-20 glass rounded-full flex items-center justify-center mx-auto mb-4 animate-float">
                   <WeatherIcon className="w-10 h-10 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Current Weather</h3>
+                <h3 className="text-2xl font-bold mb-2">{t('location.currentWeather')}</h3>
                 <p className="text-3xl font-bold text-primary mb-2">{currentWeather.temperature}</p>
-                <p className="text-muted-foreground">{currentWeather.description}</p>
+                <p className="text-muted-foreground">{t('location.description2')}</p>
               </div>
 
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center glass rounded-lg p-3">
                   <Sun className="w-6 h-6 text-accent mx-auto mb-2" />
-                  <p className="text-xs font-medium">Sunrise</p>
+                  <p className="text-xs font-medium">{t('location.sunrise')}</p>
                   <p className="text-sm">05:30</p>
                 </div>
                 <div className="text-center glass rounded-lg p-3">
                   <Cloud className="w-6 h-6 text-muted-foreground mx-auto mb-2" />
-                  <p className="text-xs font-medium">Humidity</p>
+                  <p className="text-xs font-medium">{t('location.humidity')}</p>
                   <p className="text-sm">65%</p>
                 </div>
                 <div className="text-center glass rounded-lg p-3">
                   <Sun className="w-6 h-6 text-accent mx-auto mb-2" />
-                  <p className="text-xs font-medium">Sunset</p>
+                  <p className="text-xs font-medium">{t('location.sunset')}</p>
                   <p className="text-sm">21:45</p>
                 </div>
               </div>
@@ -164,7 +166,7 @@ const LocationSection = () => {
 
             {/* Contact Information */}
             <div className="glass rounded-3xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-center">Get In Touch</h3>
+              <h3 className="text-2xl font-bold mb-6 text-center">{t('location.getInTouch')}</h3>
               
               <div className="space-y-4">
                 {contactInfo.map((contact, index) => (
@@ -191,14 +193,14 @@ const LocationSection = () => {
 
               <div className="mt-6 pt-6 border-t border-border">
                 <p className="text-center text-sm text-muted-foreground mb-4">
-                  Ready to start your adventure?
+                  {t('location.readyToStart')}
                 </p>
                 <Button 
                   variant="hero" 
                   className="w-full"
                   onClick={() => setShowContact(!showContact)}
                 >
-                  Contact Us Today
+                  {t('location.contactUsToday')}
                   <Mail className="w-4 h-4 ml-2" />
                 </Button>
               </div>

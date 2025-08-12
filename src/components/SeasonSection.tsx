@@ -113,7 +113,7 @@ const SeasonSection = () => {
             {t('section.seasons')}
           </h2>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-            {t('section.seasons')}
+            {t('section.seasons2')}
           </p>
         </div>
 

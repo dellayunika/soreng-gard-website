@@ -18,9 +18,9 @@ const AccommodationSection = () => {
   const [hoveredFacility, setHoveredFacility] = useState<string | null>(null);
 
   const facilities = [
-    { id: 'kitchen', name: t('accommodation.fullKitchen'), icon: ChefHat, description: t('accommodation.modernAppliances') },
-    { id: 'bathrooms', name: t('accommodation.bathrooms'), icon: Bath, description: t('accommodation.features').split(',')[1] || 'Clean, private facilities' },
-    { id: 'bedrooms', name: t('accommodation.cozyBedrooms'), icon: Bed, description: t('accommodation.features').split(',')[0] || 'Comfortable sleeping quarters' },
+    { id: 'kitchen', name: t('accommodation.cabin.name'), icon: ChefHat, description: t('accommodation.cabin.description') },
+    { id: 'bathrooms', name: t('accommodation.lodge.name'), icon: Bath, description: t('accommodation.lodge.description') },
+    { id: 'bedrooms', name: t('accommodation.tent.name'), icon: Bed, description: t('accommodation.tent.description') },
     { id: 'common', name: t('accommodation.commonAreas'), icon: Users, description: t('accommodation.spacesForGathering') }
   ];
 
@@ -161,15 +161,15 @@ const AccommodationSection = () => {
           {/* BBQ & Outdoor Area */}
           <div className="space-y-8">
             <div className="glass-strong rounded-3xl p-8">
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 glass rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float">
-                  <Flame className="w-8 h-8 text-accent" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2">Outdoor BBQ Area</h3>
-                <p className="text-muted-foreground">
-                  Perfect for group meals and evening gatherings under the Nordic sky
-                </p>
-              </div>
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 glass rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float">
+              <Flame className="w-8 h-8 text-accent" />
+            </div>
+            <h3 className="text-2xl font-bold mb-2">{t('accommodation.outdoorBBQ')}</h3>
+            <p className="text-muted-foreground">
+              {t('accommodation.perfectFor')}
+            </p>
+          </div>
 
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {bbqFeatures.map((feature, index) => (
@@ -201,27 +201,27 @@ const AccommodationSection = () => {
               </div>
             </div>
 
-            <div className="glass-strong rounded-2xl p-6">
-              <h4 className="text-lg font-semibold mb-4">Accommodation Features</h4>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-sm">Ideal for up to 12 guests, with dedicated male and female sleeping areas.</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-sm">Full kitchen with modern appliances</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-sm">Cozy common areas for group activities</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full" />
-                  <span className="text-sm">Outdoor spaces for all seasons</span>
-                </li>
-              </ul>
-            </div>
+          <div className="glass-strong rounded-2xl p-6">
+            <h4 className="text-lg font-semibold mb-4">{t('accommodation.accommodationFeatures')}</h4>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full" />
+                <span className="text-sm">{t('accommodation.idealFor')}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full" />
+                <span className="text-sm">{t('accommodation.fullKitchen')}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full" />
+                <span className="text-sm">{t('accommodation.commonAreas2')}</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-2 h-2 bg-primary rounded-full" />
+                <span className="text-sm">{t('accommodation.outdoorSpaces')}</span>
+              </li>
+            </ul>
+          </div>
           </div>
         </div>
       </div>
